@@ -1,9 +1,23 @@
 import React from 'react';
+import './index.scss'
 
 function TodoItem(props) {
-    return (
-        <li>
 
+    const {data:{completed,content}} = props
+
+    return (
+        <li className="todo-item">
+            <div className="check-box">
+                <input type="checkbox" checked={completed}/>
+            </div>
+            <span className="content" style={{'textDecoration': completed ? 'line-through' : 'none'}}>
+                {content}
+            </span>
+            <div className="btn-group">
+                <button className="btn btn-primary">查看</button>
+                <button className="btn btn-warning">编辑</button>
+                <button className="btn btn-danger">删除</button>
+            </div>
         </li>
     );
 }
