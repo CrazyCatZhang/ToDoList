@@ -1,7 +1,7 @@
 import './App.css';
 import MyHeader from './components/Header'
 import AddInput from "./components/AddInput";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import TodoItem from "./components/TodoItem";
 
 
@@ -9,7 +9,7 @@ function App() {
     const [isInputShow, setInputShow] = useState(false),
         [todoList, setTodoList] = useState([]);
 
-    const addItem = (value) => {
+    const addItem = useCallback((value) => {
         const data = {
             id: Date.now().toString(),
             content: value,
@@ -17,7 +17,7 @@ function App() {
         }
         setTodoList(todoList => [...todoList, data])
         setInputShow(false)
-    }
+    }, [])
     return (
         <div className="App">
             <MyHeader openInput={() => setInputShow(!isInputShow)}/>
