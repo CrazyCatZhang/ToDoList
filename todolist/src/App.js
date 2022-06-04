@@ -55,6 +55,19 @@ function App() {
         setShowEditModal(false);
     }, [])
 
+    const completeModal = useCallback(id => {
+        setTodoList(todoList => todoList.map(item => {
+            if (item.id === id) {
+                item.completed = !item.completed
+            }
+            return item
+        }))
+    }, [])
+
+    const removeModal = useCallback(id => {
+        setTodoList(todoList => todoList.filter(item => item.id !== id))
+    }, [])
+
     return (
         <div className="App">
             <CheckModal isShowCheckModal={isShowCheckModal} data={currentDate}
@@ -67,7 +80,8 @@ function App() {
                     todoList.map((item, index) => {
                         return (
                             <TodoItem data={item} key={index} openCheckModal={openCheckModal}
-                                      openEditModal={openEditModal}/>
+                                      openEditModal={openEditModal} completeModal={completeModal}
+                                      removeModal={removeModal}/>
                         )
                     })
                 }
