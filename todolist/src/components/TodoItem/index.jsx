@@ -3,7 +3,7 @@ import './index.scss'
 
 function TodoItem(props) {
 
-    const {data: {id, completed, content}, openCheckModal} = props
+    const {data: {id, completed, content}, openCheckModal, openEditModal} = props
 
     return (
         <li className="todo-item">
@@ -15,7 +15,7 @@ function TodoItem(props) {
             </span>
             <div className="btn-group">
                 <button className="btn btn-primary" onClick={() => openCheckModal(id)}>查看</button>
-                <button className="btn btn-warning">编辑</button>
+                <button className="btn btn-warning" onClick={() => openEditModal(id)}>编辑</button>
                 <button className="btn btn-danger">删除</button>
             </div>
         </li>
